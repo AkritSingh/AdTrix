@@ -11,5 +11,6 @@ load the extension on chrome://extensions/ and click on load unpacked and select
 ## Features
 - AdTrix - It is a Chrome extension that allows you to display AMP ads related data on your devtool.
 
+Node version - v22.14.0
 
 
