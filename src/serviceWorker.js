@@ -118,7 +118,6 @@ chrome.runtime.onInstalled.addListener(() => {
       }
     });
   }
-  
   // Listen for tab reload or navigation
   // chrome.webNavigation.onCommitted.addListener((details) => {
   //   if (details.tabId === activeTabId && details.transitionType === "reload") {
