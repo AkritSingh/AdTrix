@@ -1,0 +1,20 @@
+.customPrompt {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6196078431);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.838);
+  z-index: 1500;
+}
+.customPrompt .wrapper {
+  background: white;
+  padding: 20px;
+}
+.customPrompt .wrapper .btnWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}/*# sourceMappingURL=customPrompt.css.map */

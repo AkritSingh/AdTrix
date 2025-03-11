@@ -1,0 +1,36 @@
+{
+    "name" : "AdTrix - Amp Ads Extension",
+      "version": "1.0.0",
+      "manifest_version": 3,
+      "description" : "This is a extension that will provide you the information about the ads on the page by creating a table on the page.",
+      "icons": {
+          "16": "icon.png",
+          "48": "icon.png",
+          "128": "icon.png"
+        },
+      "permissions": [
+        "scripting",
+        "storage",
+        "tabs"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "background": {
+        "service_worker": "serviceWorker.JS",
+        "type": "module"
+      },
+      "devtools_page": "devtools.html",
+      "web_accessible_resources": [{
+          "resources": ["fetchNetwork.js"],
+          "matches": ["<all_urls>"]
+        }],
+      "content_scripts" : [
+          {
+              "js" : ["contentScript.js"],
+              "css": ["style.css"],
+              "matches" : ["<all_urls>"],
+              "run_at": "document_start"
+          }
+      ]
+  }

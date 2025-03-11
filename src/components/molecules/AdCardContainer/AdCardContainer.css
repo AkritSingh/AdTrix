@@ -1,0 +1,16 @@
+.AdCardContainer {
+  overflow-x: hidden;
+  padding: 10px;
+}
+.AdCardContainer.not-loaded .AdCard {
+  display: block;
+}
+.AdCardContainer.not-loaded .AdCard.done {
+  display: none;
+}
+.AdCardContainer.loaded .AdCard {
+  display: none;
+}
+.AdCardContainer.loaded .AdCard.done {
+  display: block;
+}/*# sourceMappingURL=AdCardContainer.css.map */

@@ -1,0 +1,62 @@
+.AdCard {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  border: 0.2px solid #cacaca;
+  border-radius: 3px;
+  overflow: hidden;
+  transition: 0.3s all;
+  margin-bottom: 10px;
+  border-left: 2px solid #ffb000;
+}
+.AdCard.done {
+  border-left: 2px solid green;
+}
+.AdCard.active {
+  color: white;
+  background: #2788ff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.462745098);
+}
+.AdCard.active .secondary-c, .AdCard.active .green-c, .AdCard.active .orange-c {
+  color: rgb(255, 255, 255);
+}
+.AdCard:hover {
+  scale: 1.03;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.462745098);
+}
+.AdCard > .index {
+  background: #1476ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 22px;
+  height: 19px;
+  border-radius: 2px;
+  color: #ffffff;
+  border: 0.2px solid white;
+}
+.AdCard > .content {
+  padding-top: 10px;
+  position: relative;
+}
+.AdCard > .content > .moreBtn {
+  position: absolute;
+  bottom: 0px;
+  border-radius: 3px;
+  right: 0px;
+  border: 0.2px solid white;
+}
+.AdCard > .placeholder {
+  margin-left: 20px;
+  margin-top: 3px;
+}
+.AdCard > .inspect {
+  padding: 3px 1px 1px 3px;
+  scale: 0.8;
+  right: 0;
+  background: #ffffff;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4509803922);
+  background-image: linear-gradient(45deg, #ffffff, #ffffff) !important;
+}/*# sourceMappingURL=AdCard.css.map */

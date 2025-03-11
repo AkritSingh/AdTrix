@@ -1,0 +1,46 @@
+.Container{
+    height: calc(100% - 34px);
+    width: calc(100% - 20px);
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 5px;
+    margin: 0 auto;
+    background: rgba(255, 0, 0, 0);
+    border: 0.5px solid white;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    border: 0.2px solid #bbbbbb;
+    >.left{
+        width: 30%;
+        transition: 1s all;
+    }
+    >.right{
+        width: 70%;
+        transition: 1s all;
+    }
+    &.expand{
+        >.left{
+            width: 0%;
+        }
+        >.right{
+            width: 100%;
+        }
+    }
+    >.toolbar{
+        width: auto;
+        height: 25px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        >.iconOnly{
+            width: 20px;
+            height: 20px;
+            padding: 3px;
+            margin: 3px;
+            scale: 0.8;
+        }
+    }
+}
