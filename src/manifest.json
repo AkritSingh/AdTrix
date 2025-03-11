@@ -1,8 +1,8 @@
 {
-    "name" : "AdTrix -Inspect Amp Ads",
+    "name" : "AdTrix - Inspect Amp Ads",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description" : "This is a extension that will provide you the information about the ads on the page by creating a table on the page.",
+      "description" : "It is a Chrome extension that allows you to display AMP ads related data on your devtool.",
       "icons": {
           "16": "icon.png",
           "48": "icon.png",
