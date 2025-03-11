@@ -1,5 +1,5 @@
 {
-    "name" : "AdTrix - Amp Ads Extension",
+    "name" : "AdTrix -Inspect Amp Ads",
       "version": "1.0.0",
       "manifest_version": 3,
       "description" : "This is a extension that will provide you the information about the ads on the page by creating a table on the page.",
