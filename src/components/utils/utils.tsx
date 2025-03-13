@@ -1,4 +1,4 @@
-import { adInfo,adAllAttr,pageURL, perfURLs, adDetectTags, specialSyntaxAfterAd, filters, activeFilter,appliedFilter, popUpQue, promtData } from "../signals/signals";
+import { adInfo,adAllAttr, adAllAttrOriginal,pageURL, perfURLs, adDetectTags, specialSyntaxAfterAd, filters, activeFilter,appliedFilter, popUpQue, promtData, comparedData, isComparing } from "../signals/signals";
 interface AllAdFunctions {
     getAdData: () => void;
     getAdNetworkData: (adcode: string, setNetworkFetched: any, fetchCount: number,  type?: string) => void;
@@ -29,6 +29,7 @@ export const getAdData = () => {
                 if (response?.data?.ads) { // Check if response.data.ads exists
                     adInfo.value ={...adInfo.value, ads: response.data.ads}; // directly update the nested signal
                     adAllAttr.value = response.data.allAttr;
+                    adAllAttrOriginal.value = response.data.allAttr;
                     pageURL.value = response.data.url;
                 } else {
                     console.warn("No ads data received from background script.");
@@ -144,10 +145,16 @@ export const executeBeforePageReady = (func)=>{
         ready += 1;
     });
     getData('appliedFilter',(response)=>{
+        console.log(response);
         appliedFilter.value = response?.data?.appliedFilter || 'default';
         ready += 1;
     });  
-    if(ready === 3 && func && typeof func === 'function'){
+    getData('comparedData',(response)=>{
+        console.log(response);
+        comparedData.value = response?.data?.comparedData || [];
+        ready += 1;
+    });  
+    if(ready === 4 && func && typeof func === 'function'){
         func();
     }
 }

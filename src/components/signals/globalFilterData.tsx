@@ -21,7 +21,7 @@ export const cardFilterData = {
             name: "cardType",
             type: "textArr",
             placeholder: "Enter Type name",
-            value: ['doubleclick', 'colombia']
+            value: ['doubleclick', 'colombia',  'taboola']
         },
     ],
 };

@@ -1,7 +1,9 @@
 import React, { memo, useState } from "react";
 import './GenarateReport.css';
-import { adInfo, adAllAttr, pageURL,  appliedFilterSetting } from "../../signals/signals";
+import { adInfo, adAllAttr, pageURL,  appliedFilterSetting, appliedFilter, comparedData, adAllAttrOriginal } from "../../signals/signals";
 import NetworkTable from "./networkTable";
+import Button from '../../atoms/Button/button';
+import { showPromt, setData,  getData} from "../../utils/utils";
 
 const GenarateReport: React.FC = memo(() => {
   const {ads} = adInfo.value;
@@ -25,14 +27,84 @@ const GenarateReport: React.FC = memo(() => {
     return  <NetworkTable  slot={slot} index={index}/>    
   }
 
+const compareReport = () => {
+    const isComparing = Array.isArray(comparedData.value) && comparedData.value.length > 0 && comparedData.value.length <  100
+    if(appliedFilter.value == 'default'){
+        showPromt(isComparing  ? `Are you sure you want to compare with previous report?` : `Are you sure you want to start compare report?`,()=>{
+            try {
+                if(isComparing){
+                    getData('comparedData',(response)=>{
+                        comparedData.value = response?.data?.comparedData || [];
+                        adAllAttr.value.forEach((item)=>{
+                            if(!comparedData.value.includes(item)){
+                                comparedData.value.push(item);
+                            }
+                        })
+                        adAllAttr.value  = comparedData.value;
+                        selectedFields =  comparedData.value;
+                        function confitmFunc(response){}
+                        setData('comparedData', {comparedData: comparedData.value}, confitmFunc);
+                    });  
+                }else{ 
+                    adAllAttr.value.forEach((item)=>{
+                        if(!comparedData.value.includes(item)){
+                            comparedData.value.push(item);
+                        }
+                    })
+                    adAllAttr.value  = comparedData.value;
+                    selectedFields =  comparedData.value;
+                    function confitmFunc(response){}
+                    setData('comparedData', {comparedData: comparedData.value}, confitmFunc);
+                }
+            } catch (e) {
+                console.log(e);
+            }
+          }, ()=>{});
+    }else{
+        showPromt(`Applied Filter should be 'Default' for this operation. Want to apply 'Default' filter?`,()=>{
+            try {
+                appliedFilter.value = 'default';
+                setData('appliedFilter',{appliedFilter: appliedFilter.value}, (response)=>{
+                  if(response){
+                    console.log('saved');
+                    compareReport();
+                  }
+                })
+            } catch (e) {
+                console.log(e);
+            }
+          }, ()=>{});
+    }
+}
 
-//   useEffect(()=>{
-//     console.log(allNetworks.value);
-//     setAllNetworkData(allNetworks.value);
-//   },[dataReady])
+const clearCompare  = ()  =>{
+    const isComparing = Array.isArray(comparedData.value) && comparedData.value.length > 0 && comparedData.value.length <  100
+    showPromt(isComparing  ? `Are you sure you want to reset comparision?` : `No comparision saved.`,()=>{
+        try {
+            if(isComparing){
+                function confitmFunc(response){}
+                setData('comparedData', {comparedData: []}, confitmFunc);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+      }, ()=>{});
+}
 
+const compareReportBtnProps = {
+    classname: 'white-c btn primary',
+    onclick: compareReport,
+}
+const resetReportBtnProps = {
+    classname: 'white-c btn light-red',
+    onclick: clearCompare,
+}
   return (
     <div className="report">
+        <div className="col-2 mb-10 mt-10 report-btns">
+            <Button {...resetReportBtnProps}>Reset Comparision</Button>
+            <Button {...compareReportBtnProps}>{Array.isArray(comparedData.value) && comparedData.value.length > 0 && comparedData.value.length <  100  ? 'Arrange Report For Comparision' : 'Start Fresh Comparision'}</Button>
+        </div>
      <table cellSpacing="0" cellPadding="5">
         <tr><td>URL: </td><td>{pageURL.value}</td></tr>
      </table>
@@ -57,10 +129,14 @@ const GenarateReport: React.FC = memo(() => {
                     <th>Refresh</th>
                     <th>Load difference</th>
 
-                    {selectedFields.map((item, index)=>
-                        <th key={`attr_${index}`}>{item}</th>
+                    {selectedFields.map((item, index)=>{
+                        if(!adAllAttrOriginal.value.includes(item)){
+                            return <th key={`attr_${index}`} style={{background: '#ee4848', color: 'white'}}>{item}</th>
+                        }
+                        return <th key={`attr_${index}`}>{item}</th>
+                    }
+                        
                     )}
-                    
                     
                 </tr>
             </thead>
@@ -81,8 +157,6 @@ const GenarateReport: React.FC = memo(() => {
                             {selectedFields.map((item, index)=>
                                 <td key={`attr_${index}`}>{ad.attributes[item] || '-'}</td>
                             )}
-
-                            
                         </tr>
                     )
                     

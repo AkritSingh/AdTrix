@@ -25,9 +25,12 @@ interface AdInfo {
 
 export const adInfo = signal<AdInfo>({ ads: [] });
 export const adAllAttr = signal([]);
+export const adAllAttrOriginal = signal([]);
 
 export const count = signal(0);
 export const pageURL = signal('');
+
+
 
 
 
@@ -77,3 +80,6 @@ export const popUpQue = signal([]);
 export const attributeTabData = signal<Record<string, any>>({});
 export const networkTabData = signal<Record<string, any>>({});
 export const insightsTabData = signal<Record<string, any>>({});
+
+export const comparedData= signal([]);
+export const isComparing = computed(()=>Array.isArray(comparedData.value) && comparedData.value.length > 0 && comparedData.value.length <  100);

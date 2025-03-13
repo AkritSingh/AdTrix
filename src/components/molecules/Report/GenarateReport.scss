@@ -2,6 +2,12 @@
     padding: 10px;
     overflow: auto;
     height: 100%;
+    .report-btns{
+        position: absolute;
+        inset: 0;
+        top: auto;
+        height: auto;
+    }
     table{
         border: 1px solid black;
         border-collapse: collapse;
