@@ -2,7 +2,7 @@ import React, { memo, useState } from "react";
 import './GenarateReport.css';
 import { adInfo, adAllAttr, pageURL,  appliedFilterSetting, appliedFilter, comparedData, adAllAttrOriginal } from "../../signals/signals";
 import NetworkTable from "./networkTable";
-// import Button from '../../atoms/Button/button';
+import Button from '../../atoms/Button/button';
 import { showPromt, setData,  getData} from "../../utils/utils";
 
 const GenarateReport: React.FC = memo(() => {
@@ -102,8 +102,8 @@ const resetReportBtnProps = {
   return (
     <div className="report">
         <div className="col-2 mb-10 mt-10 report-btns">
-            {/* <Button {...resetReportBtnProps}>Reset Comparision</Button>
-            <Button {...compareReportBtnProps}>{Array.isArray(comparedData.value) && comparedData.value.length > 0 && comparedData.value.length <  100  ? 'Arrange Report For Comparision' : 'Start Fresh Comparision'}</Button> */}
+            <Button {...resetReportBtnProps}>Reset Comparision</Button>
+            <Button {...compareReportBtnProps}>{Array.isArray(comparedData.value) && comparedData.value.length > 0 && comparedData.value.length <  100  ? 'Arrange Report For Comparision' : 'Start Fresh Comparision'}</Button>
         </div>
      <table cellSpacing="0" cellPadding="5">
         <tr><td>URL: </td><td>{pageURL.value}</td></tr>
